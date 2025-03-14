@@ -2,7 +2,6 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5; url=/SoC.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,6 +18,23 @@
       }
     </style>
     <title>正在加载...</title>
+    <script>
+      // 检测当前路径并设置正确的跳转地址
+      window.onload = function() {
+        const path = window.location.pathname;
+        // 检查是否在 GitHub Pages 环境
+        const isGitHubPages = path.includes('/SoC_web/');
+        
+        // 构建后，public目录内容会移到根目录，SoC.html直接在根目录
+        // GitHub Pages模式下，SoC.html在public目录中
+        const redirectUrl = isGitHubPages ? '/SoC_web/public/SoC.html' : '/SoC.html';
+        
+        // 设置5秒后跳转
+        setTimeout(function() {
+          window.location.href = redirectUrl;
+        }, 5000);
+      }
+    </script>
   </head>
   <body>
     <p>正在跳转，请稍候...</p>

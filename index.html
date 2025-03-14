@@ -21,13 +21,25 @@
     <script>
       // 检测当前路径并设置正确的跳转地址
       window.onload = function() {
-        const path = window.location.pathname;
+        // 获取完整的URL
+        const currentUrl = window.location.href;
+        
         // 检查是否在 GitHub Pages 环境
-        const isGitHubPages = path.includes('/SoC_web/');
+        const isGitHubPages = currentUrl.includes('github.io/SoC_web');
         
         // 构建后，public目录内容会移到根目录，SoC.html直接在根目录
         // GitHub Pages模式下，SoC.html在public目录中
-        const redirectUrl = isGitHubPages ? '/SoC_web/public/SoC.html' : '/SoC.html';
+        let redirectUrl;
+        
+        if (isGitHubPages) {
+          // 在GitHub Pages环境下，使用完整的URL路径
+          redirectUrl = 'https://msgk239.github.io/SoC_web/public/SoC.html';
+        } else {
+          // 在本地构建环境下
+          redirectUrl = '/SoC.html';
+        }
+        
+        console.log("将跳转到: " + redirectUrl);
         
         // 设置5秒后跳转
         setTimeout(function() {
